@@ -1,13 +1,7 @@
 <template>
   <div>
 
-    <Row :gutter="20">
-      <div> 1</div>
-    </Row>
-    <Row :gutter="20" style="margin-top: 10px;">
-           22
-    </Row>
-
+  <span>111</span>
   </div>
 </template>
 

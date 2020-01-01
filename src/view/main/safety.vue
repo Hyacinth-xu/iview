@@ -1,7 +1,7 @@
 <template>
-   <div>
-     1111
-   </div>
+  <div>
+    safety
+  </div>
 </template>
 
 <script>

@@ -3,14 +3,15 @@
     <Sider hide-trigger collapsible :width="256" :collapsed-width="64" v-model="collapsed" class="left-sider" :style="{overflow: 'hidden'}">
       <side-menu accordion ref="sideMenu" :active-name="$route.name" :collapsed="collapsed" @on-select="turnToPage" :menu-list="menuList">
         <!-- 需要放在菜单上面的内容，如Logo，写在side-menu标签内部，如下 -->
-        <!-- <div class="logo-con">
-          <!-- <img v-show="!collapsed" :src="maxLogo" key="max-logo" />
+         <div class="logo-con">
+          <img v-show="!collapsed" :src="maxLogo" key="max-logo" />
           <img v-show="collapsed" :src="minLogo" key="min-logo" />
-        </div> -->
+        </div>
+
       </side-menu>
     </Sider>
     <Layout>
-      <Header class="header-con">
+      <Header class="header-con" :style="{backgroundImage: 'url(' + bg2 + ')'}">
         <header-bar :collapsed="collapsed" @on-coll-change="handleCollapsedChange">
           <user :message-unread-count="unreadCount" :user-avatar="userAvatar"/>
           <language v-if="$config.useI18n" @on-lang-change="setLocal" style="margin-right: 10px;" :lang="local"/>
@@ -35,6 +36,7 @@
   </Layout>
 </template>
 <script>
+import headerbg from '@/assets/images/header-bg.png'
 import SideMenu from './components/side-menu'
 import HeaderBar from './components/header-bar'
 import TagsNav from './components/tags-nav'
@@ -63,6 +65,7 @@ export default {
   },
   data () {
     return {
+      bg2: headerbg,
       collapsed: false,
       minLogo,
       maxLogo,
@@ -96,8 +99,8 @@ export default {
       return this.$store.state.app.hasReadErrorPage
     },
     unreadCount () {
-      //未读信息
-      // return this.$store.state.user.unreadCount
+      // 未读信息
+      return this.$store.state.user.unreadCount
     }
   },
   methods: {

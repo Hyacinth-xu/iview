@@ -1,5 +1,4 @@
 import Main from '@/components/main'
-import parentView from '@/components/parent-view'
 
 /**
  * iview-admin中meta除了原生参数外可配置的参数:
@@ -18,87 +17,105 @@ import parentView from '@/components/parent-view'
  */
 
 export default [{
-    path: '/main',
-    name: 'main', // 一级目录
+  path: '/main',
+  name: 'main', // 一级目录
+  meta: {
+    icon: 'md-cog',
+    title: '设置'
+  },
+  component: Main, // 一级目录必须使用Main组件作为component
+  children: [{
+    path: 'link',
+    name: 'link', // 一级目录下的二级页面
     meta: {
-      icon: 'md-cog',
-      title: '设置'
+      icon: 'ios-link',
+      title: '连接'
     },
-    component: Main, // 一级目录必须使用Main组件作为component
-    children: [{
-        path: 'test1',
-        name: 'test1', // 一级目录下的二级页面
-        meta: {
-          icon: 'ios-link',
-          title: '连接'
-        },
-        component: () => import('@/view/main/test1.vue') // 这引入的是页面单文件
-      },
-      {
-        path: 'test2',
-        name: 'test2', // 一级目录下的二级页面
-        meta: {
-          icon: 'ios-bug',
-          title: '故障'
-        },
-        component: () => import('@/view/main/test2.vue') // 这引入的是页面单文件
-      }
+    component: () => import('@/view/main/link.vue') // 这引入的是页面单文件
+  },
+  {
+    path: 'malfunction',
+    name: 'malfunction', // 一级目录下的二级页面
+    meta: {
+      icon: 'ios-bug',
+      title: '故障'
+    },
+    component: () => import('@/view/main/malfunction.vue') // 这引入的是页面单文件
+  },
+  {
+    path: 'wifi',
+    name: 'wifi', // 一级目录下的二级页面
+    meta: {
+      icon: 'ios-wifi',
+      title: 'Wi-Fi'
+    },
+    component: () => import('@/view/main/wifi.vue') // 这引入的是页面单文件
+  },
+  {
+    path: 'safety',
+    name: 'safety', // 一级目录下的二级页面
+    meta: {
+      icon: 'ios-lock',
+      title: '安全性'
+    },
+    component: () => import('@/view/main/safety.vue') // 这引入的是页面单文件
+  }
 
-    ]
+  ]
+},
+{
+  path: '/login',
+  name: 'login',
+  meta: {
+    title: 'Login - 登录',
+    hideInMenu: true
   },
-  {
-    path: '/login',
-    name: 'login',
-    meta: {
-      title: 'Login - 登录',
-      hideInMenu: true
-    },
-    component: () => import('@/view/login/login.vue')
+  component: () => import('@/view/login/login.vue')
+},
+{
+  path: '/',
+  name: '_home',
+  redirect: '/home',
+  component: Main,
+  meta: {
+    hideInMenu: true,
+    notCache: true
   },
-  {
-    path: '/',
-    name: '_home',
-    redirect: '/home',
-    component: Main,
+  children: [{
+    path: '/home',
+    name: 'home',
     meta: {
       hideInMenu: true,
-      notCache: true
+      title: '首页',
+      notCache: true,
+      icon: 'md-home'
     },
-    children: [{
-      path: '/home',
-      name: 'home',
-      meta: {
-        hideInMenu: true,
-        title: '首页',
-        notCache: true,
-        icon: 'md-home'
-      },
-      component: () => import('@/view/single-page/home')
-    }]
-  },
+    component: () => import('@/view/single-page/home')
+  }]
+},
 
-  {
-    path: '/401',
-    name: 'error_401',
-    meta: {
-      hideInMenu: true
-    },
-    component: () => import('@/view/error-page/401.vue')
+{
+  path: '/401',
+  name: 'error_401',
+  meta: {
+    hideInMenu: true
   },
-  {
-    path: '/500',
-    name: 'error_500',
-    meta: {
-      hideInMenu: true
-    },
-    component: () => import('@/view/error-page/500.vue')
+  component: () => import('@/view/error-page/401.vue')
+},
+{
+  path: '/500',
+  name: 'error_500',
+  meta: {
+    hideInMenu: true
   },
-  {
-    path: '*',
-    name: 'error_404',
-    meta: {
-      hideInMenu: true
-    },
-    component: () => import('@/view/error-page/404.vue')
-  }
+  component: () => import('@/view/error-page/500.vue')
+},
+{
+  path: '*',
+  name: 'error_404',
+  meta: {
+    hideInMenu: true
+  },
+  component: () => import('@/view/error-page/404.vue')
+}
 ]

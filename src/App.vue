@@ -17,9 +17,10 @@ export default {
 }
 html,body{
   .size;
-  overflow: hidden;
+  overflow-y: hidden;
   margin: 0;
-  padding: 0 20%;
+  padding: 0 200px;
+  min-width:1000px;
   background-image:linear-gradient(#01528b,#001b2d);
 }
 #app {
